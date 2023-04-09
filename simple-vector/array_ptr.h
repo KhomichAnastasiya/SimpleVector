@@ -34,8 +34,14 @@ public:
     ArrayPtr& operator=(const ArrayPtr&) = delete;
 
     ArrayPtr& operator=(ArrayPtr&& other) {
-        raw_ptr_ = std::exchange(other.raw_ptr_, nullptr);
-        return *this;
+        if (this == &other) {
+            return *this;
+        }
+        else {
+            raw_ptr_ = other.raw_ptr_;
+            other.raw_ptr_ = nullptr;
+            return *this;
+        }
     }
 
     [[nodiscard]] Type* Release() noexcept {
