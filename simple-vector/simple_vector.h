@@ -53,10 +53,7 @@ public:
 
     SimpleVector(const SimpleVector& other) {
         assert(size_ == 0);
-        SimpleVector<Type> vec_copy(other.GetSize());
-        std::copy((other.smart_ptr_).Get(), ((other.smart_ptr_).Get() + other.GetSize()), (vec_copy.smart_ptr_).Get());
-        vec_copy.capacity_ = other.capacity_;
-        swap(vec_copy);
+        std::copy(other.begin(), other.end(), smart_ptr_.Get());
     }
 
     SimpleVector(SimpleVector&& other) {
