@@ -286,11 +286,12 @@ public:
                 return *this;
             }
             SimpleVector<Type> temp(rhs.size_);
-            std::copy(rhs.begin(), rhs.end(), temp.begin());
+            std::move(rhs.begin(), rhs.end(), temp.begin());
             temp.capacity_ = rhs.capacity_;
             swap(temp);
         }
         return *this;
+
     }
 
     // Возвращает ссылку на элемент с индексом index
