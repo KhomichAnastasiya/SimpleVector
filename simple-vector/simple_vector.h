@@ -109,7 +109,7 @@ public:
         }
 
         ArrayPtr<Type> temp(new_capacity);
-        std::move(smart_ptr_.begin(), smart_ptr_.end(), temp.Get());
+        std::move(smart_ptr_.Get(), smart_ptr_.Get() + size_, temp.Get());
         smart_ptr_.swap(temp);
         capacity_ = new_capacity;
     }
@@ -128,10 +128,7 @@ public:
     void PushBack(Type&& item) {
         if (size_ == capacity_) {
             size_t new_capacity = std::max(size_t(1), 2 * capacity_);
-            ArrayPtr<Type> temp(new_capacity);
-            std::move(smart_ptr_.Get(), smart_ptr_.Get() + size_, temp.Get());
-            smart_ptr_.swap(temp);
-            capacity_ = size_ + 1;
+            Reserve(new_capacity);
         }
         *(end()) = std::move(item);
         size_++;
