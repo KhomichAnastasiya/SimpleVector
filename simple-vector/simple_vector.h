@@ -109,7 +109,7 @@ public:
         }
 
         ArrayPtr<Type> temp(new_capacity);
-        std::copy(smart_ptr_.begin(), smart_ptr_.end(), temp.Get());
+        std::move(smart_ptr_.begin(), smart_ptr_.end(), temp.Get());
         smart_ptr_.swap(temp);
         capacity_ = new_capacity;
     }
