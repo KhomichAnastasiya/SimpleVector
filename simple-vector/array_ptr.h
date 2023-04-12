@@ -39,7 +39,7 @@ public:
         }
         else {
             if (raw_ptr_ != nullptr) {
-                delete raw_ptr_;
+                delete[] raw_ptr_;
             }
             raw_ptr_ = other.raw_ptr_;
             other.raw_ptr_ = nullptr;

@@ -285,10 +285,9 @@ public:
                 Clear();
                 return *this;
             }
-            SimpleVector<Type> temp(rhs.size_);
-            std::move(rhs.begin(), rhs.end(), temp.begin());
-            temp.capacity_ = rhs.capacity_;
-            swap(temp);
+            smart_ptr_ = std::move(rhs.smart_ptr_);
+            size_ = rhs.size_;
+            capacity_ = rhs.capacity_;
         }
         return *this;
 
