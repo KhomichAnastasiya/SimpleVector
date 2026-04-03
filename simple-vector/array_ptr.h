@@ -65,7 +65,7 @@ public:
         return raw_ptr_ != nullptr;
     }
 
-    Type* Get() const noexcept {
+    Type* get() const noexcept {
         return raw_ptr_;
     }
 
